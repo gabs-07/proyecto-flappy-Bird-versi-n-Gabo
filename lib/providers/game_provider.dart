@@ -79,6 +79,10 @@ class GameProvider extends ChangeNotifier {
   bool   _newRecord        = false;
   bool   get newRecord     => _newRecord;
 
+  // ── Intro ────────────────────────────────────────────────────────────────
+  bool introPlayed = false;
+  void markIntroPlayed() { introPlayed = true; notifyListeners(); }
+
   // ── Obstáculos ───────────────────────────────────────────────────────────────
   double _obstacleTimer = 0.0;
   double get _obstacleInterval {
