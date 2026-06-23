@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/game_provider.dart';
+import 'leaderboard_screen.dart';
+import 'replay_screen.dart';
 
 class GameOverScreen extends StatefulWidget {
   const GameOverScreen({super.key});
@@ -25,9 +27,19 @@ class _GameOverScreenState extends State<GameOverScreen>
   @override
   void dispose() { _ctrl.dispose(); super.dispose(); }
 
+  void _openLeaderboard(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx, isScrollControlled: true, backgroundColor: Colors.transparent,
+      builder: (_) => SizedBox(height: MediaQuery.of(ctx).size.height * 0.92, child: const LeaderboardScreen()));
+  }
+
+  void _openReplay(BuildContext ctx) {
+    Navigator.push(ctx, MaterialPageRoute(builder: (_) => const ReplayScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
-    final game = context.watch<GameProvider>();
+    final game  = context.watch<GameProvider>();
     final night = game.isNight;
 
     return FadeTransition(
@@ -37,14 +49,15 @@ class _GameOverScreenState extends State<GameOverScreen>
         child: Center(child: ScaleTransition(
           scale: _scale,
           child: Container(
-            width: 300,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+            width: 310,
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
             decoration: BoxDecoration(
               color: night ? const Color(0xFF0D1B3E) : const Color(0xFFF5DEB3),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), width: 3),
               boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.45), blurRadius: 24, offset: const Offset(0,10))]),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
+              // Título
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
@@ -52,95 +65,74 @@ class _GameOverScreenState extends State<GameOverScreen>
                   borderRadius: BorderRadius.circular(14)),
                 child: Text(night ? '🌙 GAME OVER' : 'GAME OVER',
                   style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 2))),
-              const SizedBox(height: 14),
+              const SizedBox(height: 12),
               Text('Nivel ${game.level} alcanzado',
                 style: TextStyle(color: night ? const Color(0xFFAABBDD) : const Color(0xFF8B6914), fontSize: 13)),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
+              // Panel de puntaje
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 decoration: BoxDecoration(
                   color: night ? const Color(0xFF1A2A5E) : const Color(0xFFD4A935),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), width: 2)),
                 child: Column(children: [
                   _row('PUNTOS',  game.score,       false,          night),
-                  Divider(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), height: 12),
+                  Divider(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), height: 10),
                   _row('RÉCORD',  game.bestScore,   game.newRecord, night),
-                  Divider(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), height: 12),
-                  // Monedas ganadas en esta partida
+                  Divider(color: night ? const Color(0xFF2A4A8A) : const Color(0xFF8B6914), height: 10),
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text('MONEDAS', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,
-                      color: night ? const Color(0xFFAABBDD) : const Color(0xFF5A3E10))),
+                    Text('MONEDAS', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
+                        color: night ? const Color(0xFFAABBDD) : const Color(0xFF5A3E10))),
                     Row(children: [
-                      const Text('💰', style: TextStyle(fontSize: 16)),
+                      const Text('💰', style: TextStyle(fontSize: 15)),
                       const SizedBox(width: 4),
                       Text('+${game.sessionCoins}',
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFFFFD700))),
+                          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: Color(0xFFFFD700))),
                     ]),
                   ]),
                 ])),
               if (game.newRecord) ...[
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(Icons.star_rounded, color: Color(0xFFFFD700), size: 18),
-                  SizedBox(width: 6),
+                  Icon(Icons.star_rounded, color: Color(0xFFFFD700), size: 16),
+                  SizedBox(width: 5),
                   Text('¡NUEVO RÉCORD!', style: TextStyle(color: Color(0xFFFFD700), fontWeight: FontWeight.bold, fontSize: 13, letterSpacing: 1)),
-                  SizedBox(width: 6),
-                  Icon(Icons.star_rounded, color: Color(0xFFFFD700), size: 18),
+                  SizedBox(width: 5),
+                  Icon(Icons.star_rounded, color: Color(0xFFFFD700), size: 16),
                 ]),
               ],
-              // Logros de esta partida
-              if (game.unlockedAchievements.isNotEmpty) ...[
-                const SizedBox(height: 10),
-                Text('${game.unlockedAchievements.length} logros desbloqueados',
-                  style: TextStyle(fontSize: 12, color: night ? Colors.white54 : const Color(0xFF8B6914))),
-              ],
-              const SizedBox(height: 20),
-              Wrap(
-                spacing: 12,
-                runSpacing: 12,
-                alignment: WrapAlignment.center,
+              const SizedBox(height: 16),
+
+              // ── Botones en grid 2×2 ────────────────────────
+              GridView.count(
+                crossAxisCount: 2, shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
+                mainAxisSpacing: 10, crossAxisSpacing: 10, childAspectRatio: 2.8,
                 children: [
-                  SizedBox(
-                    width: 140,
-                    child: GestureDetector(
-                      onTap: game.resetGame,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [Color(0xFF5DC832), Color(0xFF3A9E18)], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: const Color(0xFF2E7010), width: 2),
-                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 6, offset: const Offset(0,4))],
-                        ),
-                        child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          Icon(Icons.replay_rounded, color: Colors.white, size: 22),
-                          SizedBox(width: 8),
-                          Flexible(child: Text('JUGAR DE NUEVO', textAlign: TextAlign.center, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1))),
-                        ]),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 140,
-                    child: GestureDetector(
-                      onTap: game.resetGame,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: const Color(0xFF5A5A5A), width: 2),
-                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.15), blurRadius: 6, offset: const Offset(0,4))],
-                        ),
-                        child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          Icon(Icons.home_rounded, color: Colors.white, size: 22),
-                          SizedBox(width: 8),
-                          Text('HOME', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1)),
-                        ]),
-                      ),
-                    ),
-                  ),
+                  // Jugar de nuevo
+                  _GameBtn(
+                    label: 'JUGAR', icon: Icons.replay_rounded,
+                    gradient: const [Color(0xFF5DC832), Color(0xFF3A9E18)],
+                    border: const Color(0xFF2E7010),
+                    onTap: game.resetGame),
+                  // Replay
+                  _GameBtn(
+                    label: 'REPLAY', icon: Icons.play_circle_outline_rounded,
+                    gradient: const [Color(0xFF1A3A8A), Color(0xFF0D1B5E)],
+                    border: const Color(0xFFF5E87A),
+                    onTap: () => _openReplay(context)),
+                  // Ranking
+                  _GameBtn(
+                    label: 'RANKING', icon: Icons.emoji_events_rounded,
+                    gradient: const [Color(0xFF8B6914), Color(0xFF5A4008)],
+                    border: const Color(0xFFFFD700),
+                    onTap: () => _openLeaderboard(context)),
+                  // Home
+                  _GameBtn(
+                    label: 'HOME', icon: Icons.home_rounded,
+                    gradient: [const Color(0xFF3A3A3A), const Color(0xFF222222)],
+                    border: const Color(0xFF5A5A5A),
+                    onTap: game.resetGame),
                 ],
               ),
             ]),
@@ -153,9 +145,30 @@ class _GameOverScreenState extends State<GameOverScreen>
   Widget _row(String label, int val, bool highlight, bool night) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
-        color: night ? const Color(0xFFAABBDD) : const Color(0xFF5A3E10))),
-      Text('$val', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900,
-        color: highlight ? const Color(0xFFFFD700) : (night ? Colors.white : const Color(0xFF3A2800)))),
+      Text(label, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,
+          color: night ? const Color(0xFFAABBDD) : const Color(0xFF5A3E10))),
+      Text('$val', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900,
+          color: highlight ? const Color(0xFFFFD700) : (night ? Colors.white : const Color(0xFF3A2800)))),
     ]);
+}
+
+class _GameBtn extends StatelessWidget {
+  final String label; final IconData icon;
+  final List<Color> gradient; final Color border;
+  final VoidCallback onTap;
+  const _GameBtn({required this.label, required this.icon, required this.gradient, required this.border, required this.onTap});
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: onTap,
+    child: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: gradient, begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: border, width: 1.5),
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 4, offset: const Offset(0,3))]),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Icon(icon, color: Colors.white, size: 16),
+        const SizedBox(width: 5),
+        Text(label, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12, letterSpacing: 0.5)),
+      ])));
 }

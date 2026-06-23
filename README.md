@@ -468,7 +468,7 @@ flutter build appbundle --release
 
 ## Créditos
 
-Proyecto desarrollado en Flutter/Dart.
+Proyecto desarrollado en Flutter/Dart. 
 
 **Dependencias:**
 - [`provider`](https://pub.dev/packages/provider) — gestión de estado

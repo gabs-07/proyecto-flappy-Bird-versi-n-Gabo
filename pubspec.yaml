@@ -1,7 +1,7 @@
 name: poryectofinal
-description: "Flappy Bird Adventure — Logros, monedas, power-ups y skins."
+description: "Flappy Bird Adventure — Ranking online, replay y modo 2 jugadores."
 publish_to: 'none'
-version: 4.0.0+1
+version: 5.0.0+1
 
 environment:
   sdk: ^3.11.0
@@ -12,7 +12,8 @@ dependencies:
   provider: ^6.0.5
   shared_preferences: ^2.3.2
   cupertino_icons: ^1.0.8
-  audioplayers: ^6.0.0
+  http: ^1.2.1               # Ranking online (JSONBin / API REST)
+  audioplayers: ^6.0.0       # Audio
 
 dev_dependencies:
   flutter_test:
