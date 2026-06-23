@@ -310,7 +310,7 @@ class GameProvider extends ChangeNotifier {
       final hitObs    = isNight && GameLogic.checkObstacleCollision(bird, obstacles);
       final hitBounds = GameLogic.checkGroundCollision(bird);
       if (hitPipe || hitObs || hitBounds) {
-        if (shieldActive && !hitBounds) {
+        if (shieldActive) {
           shieldActive = false; shieldTimer = 0;
           _shakeAmount = 0.4;
           HapticFeedback.mediumImpact();
