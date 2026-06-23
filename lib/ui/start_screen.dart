@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/game_provider.dart';
+import 'achievements_screen.dart';
 import 'shop_screen.dart';
 
 class StartScreen extends StatefulWidget {
@@ -121,6 +122,26 @@ class _StartScreenState extends State<StartScreen>
                     boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 8, offset: const Offset(0,3))],
                   ),
                   child: const Text('TIENDA', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
+                ),
+              ),
+              const SizedBox(width: 12),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (_) => const AchievementsScreen(),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4488FF),
+                    borderRadius: BorderRadius.circular(28),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 8, offset: const Offset(0,3))],
+                  ),
+                  child: const Text('LOGROS', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
                 ),
               ),
             ]),
