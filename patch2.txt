@@ -1,0 +1,24 @@
+*** Begin Patch
+*** Update File: c:\Users\Gabriel Ruiz\Desktop\serpiente\poryectofinal\lib\main.dart
+@@
+   static const double gravity = 0.0015;
+   static const double jumpVelocity = -0.035;
+   static const double pipeSpeed = 0.005;
+-  static const double pipeGap = 0.35;
+-  static const double birdSizeRatio = 0.09;
+-  static const double birdX = -0.4;
++  static const double pipeGap = 0.44;
++  static const double pipeWidthRatio = 0.12;
++  static const double birdSizeRatio = 0.075;
++  static const double birdX = -0.45;
+@@
+-      final double halfPipe = 0.125;
++      final double halfPipe = pipeWidthRatio / 2;
+       final double pipeLeft = pipe.x - halfPipe;
+       final double pipeRight = pipe.x + halfPipe;
+@@
+-    final double pipeWidth = screenWidth * 0.14;
+-    final double gapHeight = screenHeight * 0.28;
++    final double pipeWidth = screenWidth * pipeWidthRatio;
++    final double gapHeight = screenHeight * 0.34;
+*** End Patch

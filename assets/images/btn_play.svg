@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 44" width="120" height="44">
+  <rect width="120" height="44" rx="22" fill="#5DC832" stroke="#2E7010" stroke-width="2"/>
+  <polygon points="38,14 38,30 54,22" fill="white"/>
+  <text x="70" y="28" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="white">PLAY</text>
+</svg>

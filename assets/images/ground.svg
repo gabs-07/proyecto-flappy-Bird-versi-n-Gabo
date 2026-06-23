@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 112" width="336" height="112">
+  <defs>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#4A8E2B"/>
+      <stop offset="50%"  stop-color="#6AAF3E"/>
+      <stop offset="100%" stop-color="#4A8E2B"/>
+    </linearGradient>
+  </defs>
+  <!-- Franja de pasto -->
+  <rect width="336" height="28" fill="url(#grass)"/>
+  <!-- Briznas de pasto -->
+  <line x1="14"  y1="0" x2="10"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="28"  y1="0" x2="24"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="42"  y1="0" x2="38"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="56"  y1="0" x2="52"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="70"  y1="0" x2="66"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="84"  y1="0" x2="80"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="98"  y1="0" x2="94"  y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="112" y1="0" x2="108" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="126" y1="0" x2="122" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="140" y1="0" x2="136" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="154" y1="0" x2="150" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="168" y1="0" x2="164" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="182" y1="0" x2="178" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="196" y1="0" x2="192" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="210" y1="0" x2="206" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="224" y1="0" x2="220" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="238" y1="0" x2="234" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="252" y1="0" x2="248" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="266" y1="0" x2="262" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="280" y1="0" x2="276" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="294" y1="0" x2="290" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="308" y1="0" x2="304" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <line x1="322" y1="0" x2="318" y2="20" stroke="#3A7020" stroke-width="2"/>
+  <!-- Tierra -->
+  <rect y="28" width="336" height="84" fill="#DEB887"/>
+  <!-- Franjas de tierra oscura (para tile efecto) -->
+  <rect y="28" x="0"   width="56" height="84" fill="#C4A464" opacity="0.55"/>
+  <rect y="28" x="112" width="56" height="84" fill="#C4A464" opacity="0.55"/>
+  <rect y="28" x="224" width="56" height="84" fill="#C4A464" opacity="0.55"/>
+  <!-- Piedras -->
+  <circle cx="34"  cy="58"  r="4"   fill="#B89050" opacity="0.7"/>
+  <circle cx="80"  cy="72"  r="3"   fill="#B89050" opacity="0.7"/>
+  <circle cx="148" cy="50"  r="3.5" fill="#B89050" opacity="0.7"/>
+  <circle cx="190" cy="80"  r="2.5" fill="#B89050" opacity="0.7"/>
+  <circle cx="260" cy="64"  r="4"   fill="#B89050" opacity="0.7"/>
+  <circle cx="300" cy="90"  r="3"   fill="#B89050" opacity="0.7"/>
+</svg>

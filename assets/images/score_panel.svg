@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 90" width="220" height="90">
+  <rect width="220" height="90" rx="10" fill="#D4A935" stroke="#8B6914" stroke-width="2"/>
+  <text x="20" y="38" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#5A3E10">SCORE</text>
+  <text x="200" y="38" text-anchor="end" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#3A2800">0</text>
+  <line x1="10" y1="48" x2="210" y2="48" stroke="#8B6914" stroke-width="1.5"/>
+  <text x="20" y="72" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#5A3E10">BEST</text>
+  <text x="200" y="72" text-anchor="end" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#E05C2A">0</text>
+</svg>

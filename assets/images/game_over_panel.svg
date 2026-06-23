@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 64" width="196" height="64">
+  <rect width="196" height="64" rx="8" fill="#F5DEB3" stroke="#8B6914" stroke-width="2"/>
+  <rect x="14" y="8" width="168" height="36" rx="6" fill="#E05C2A"/>
+  <text x="98" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="white" letter-spacing="2">GAME OVER</text>
+</svg>

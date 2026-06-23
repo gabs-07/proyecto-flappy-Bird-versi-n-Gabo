@@ -1,0 +1,50 @@
+name: poryectofinal
+description: "Flappy Bird Adventure — Logros, monedas, power-ups y skins."
+publish_to: 'none'
+version: 4.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.5
+  shared_preferences: ^2.3.2
+  cupertino_icons: ^1.0.8
+  audioplayers: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/background.png
+    - assets/images/ground.png
+    - assets/images/pipe_top.png
+    - assets/images/pipe_bottom.png
+    - assets/images/pipe_cap.png
+    - assets/images/bird_1.png
+    - assets/images/bird_2.png
+    - assets/images/bird_3.png
+    - assets/images/bird_dead.png
+    - assets/images/night/background_night.png
+    - assets/images/night/ground_night.png
+    - assets/images/night/pipe_top_night.png
+    - assets/images/night/pipe_bottom_night.png
+    - assets/images/night/bird_night_0.png
+    - assets/images/night/bird_night_1.png
+    - assets/images/night/bird_night_2.png
+    - assets/images/night/bird_night_3.png
+    - assets/images/night/bird_night_dead.png
+    - assets/images/obstacles/meteor.png
+    - assets/images/obstacles/bat_enemy.png
+    - assets/images/obstacles/laser_barrier.png
+    - assets/images/obstacles/ufo_enemy.png
+    - assets/images/obstacles/ghost_enemy.png
+    - assets/audio/game-jump.mp3
+    - assets/audio/game-over.mp3
+    - assets/audio/musica_de_fondo.mp3
